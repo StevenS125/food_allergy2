@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { Text, View, TextInput, SafeAreaView, StyleSheet, Button, Alert, DatePickerIOS, Modal, TouchableHighlight} from 'react-native';
 
 import Login from './src/components/Login';
+import Registration from './src/components/Registration';
 
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {chosenDate: new Date(),
-                  modalVisible: false};
+                  modalVisible: false,
+                  isLoggedIn: false
+                };
 
     this.setDate = this.setDate.bind(this);
   }
@@ -64,7 +67,7 @@ export default class App extends Component {
         />
             <Button
           title="Press me"
-          onPress={() => this.fetchInitialDeals()}
+          onPress={() => console.log(this.state)}
         />
     </View>
     <View>
@@ -88,7 +91,13 @@ export default class App extends Component {
             this.setModalVisible(true);
           }}
         />
-    <Login />
+        {this.state.isLoggedIn === false && (
+          <View>
+          <Login setParentState={newState=>this.setState(newState)} />
+          <Registration setParentState={newState=>this.setState(newState)} />
+          </View>
+          )}
+   
     </View>
     <Modal
           animationType="slide"

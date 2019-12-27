@@ -8,27 +8,29 @@ import {
     ActivityIndicator
 } from 'react-native';
 
-export default class Login extends Component {
+export default class Registration extends Component {
 
     state = {
         username: '',
         password: '',
+        email: '',
         isLoggingIn: false,
         message: '',
         key: ''
         }
 
-    _userLogin = () => { 
+    _userRegister = () => { 
 
         this.setState({isLoggingIn: true, message:''});
 
         var params = {
             username: this.state.username,
-            password: this.state.password,
-            email: ''
+            password1: this.state.password,
+            password2: this.state.password,
+            email: this.state.email
         };
 
-        fetch('https://allergy-api.herokuapp.com/rest-auth/login/', {
+        fetch('https://allergy-api.herokuapp.com/rest-auth/registration/', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -42,9 +44,8 @@ export default class Login extends Component {
                 this.setState({isLoggingIn: false, message: responseJson[Object.keys(responseJson)[0]]})
             }
             else {
-                this.setState({isLoggingIn: false, key: responseJson['key']})
+                this.setState({isLoggingIn: false, key: responseJson['key']}),
                 this.props.setParentState({isLoggedIn: true, key: responseJson['key'], username: this.state.username})
-                
                 
             }
 
@@ -63,9 +64,10 @@ export default class Login extends Component {
             <ScrollView style={{padding: 20}}>
                 <Text 
                     style={{fontSize: 27}}>
-                    Login
+                    Register
                 </Text>
                 <TextInput placeholder='Username' autoCapitalize = 'none' onChangeText={text => this.setState({username: text})} />
+                <TextInput placeholder='email' autoCapitalize = 'none' onChangeText={text => this.setState({email: text})}/>
                 <TextInput placeholder='Password' autoCapitalize = 'none' onChangeText={text => this.setState({password: text})}/>
                 <View style={{margin:7}} />
                 {this.state.isLoggingIn && <ActivityIndicator />}
@@ -77,7 +79,7 @@ export default class Login extends Component {
                     )}
                 <Button 
                     disabled={this.state.isLoggingIn||!this.state.username||!this.state.password}
-                    onPress={this._userLogin}
+                    onPress={this._userRegister}
                     title="Submit"
                       />
                   </ScrollView>
