@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, TextInput, SafeAreaView, StyleSheet, Button, Alert, DatePickerIOS, Modal, TouchableHighlight} from 'react-native';
 
+import Login from './src/components/Login';
+
 
 export default class App extends Component {
   constructor(props) {
@@ -86,6 +88,7 @@ export default class App extends Component {
             this.setModalVisible(true);
           }}
         />
+    <Login />
     </View>
     <Modal
           animationType="slide"
