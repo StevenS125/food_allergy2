@@ -20,20 +20,25 @@ export default class App extends Component {
   }
 
   async fetchInitialDeals() {
-    fetch('https://allergy-api.herokuapp.com/rest-auth/login/', {
+    
+      fetch('https://allergy-api.herokuapp.com/rest-auth/login/', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          username: 'root',
-          email: '',
-          password: 'hotdogs',
+          username: 'dog',
+          email: 'd@d.com',
+          password: 'hotdogs123'
         }),
-      }) .then((res) => {
-        console.log(JSON.stringify(res))
-      }) ;
+      }).then((response) => response.json())
+          .then((responseJson) => {
+            console.log(responseJson);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
     }
 
   render() {
