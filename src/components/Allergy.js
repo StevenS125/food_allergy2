@@ -21,7 +21,6 @@ export default class Allergy extends Component {
         this.setState({
             foods: this.props.foods
         })
-        console.log(this.state)
     }
 
 

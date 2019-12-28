@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, SafeAreaView, Picker, StyleSheet, Button, Alert, DatePickerIOS, Modal, TouchableHighlight} from 'react-native';
+import { Text, View, ScrollView, StyleSheet, Button, Alert, Modal} from 'react-native';
 
 // components
 import Allergy from './Allergy'
@@ -20,7 +20,6 @@ export default class Home extends Component {
    const newFood = await fetch('https://allergy-api.herokuapp.com/food/')
    .then((response) => response.json())
    .then((responseJson) => {
-     console.log(responseJson);
      this.setState({
        newFood: responseJson
      })
@@ -43,7 +42,7 @@ export default class Home extends Component {
     const user = this.props.user
 
     return (
-      <View> 
+      <ScrollView> 
         <Text style={styles.Heading} >Welcome {user} </Text> 
 
 <Allergy foods={this.state.newFood} />
@@ -55,7 +54,7 @@ title="Log Out"
 onPress={this.logOut}
 />
 </View>
-      </View>
+      </ScrollView>
     );
   }
 }
