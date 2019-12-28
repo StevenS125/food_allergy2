@@ -3,6 +3,7 @@ import { Text, View, TextInput, SafeAreaView, StyleSheet, Button, Alert, DatePic
 
 import Login from './src/components/Login';
 import Registration from './src/components/Registration';
+import Home from './src/components/Home';
 
 
 export default class App extends Component {
@@ -10,7 +11,8 @@ export default class App extends Component {
     super(props);
     this.state = {chosenDate: new Date(),
                   modalVisible: false,
-                  isLoggedIn: false
+                  isLoggedIn: false,
+                  isRegistered: true,
                 };
 
     this.setDate = this.setDate.bind(this);
@@ -49,56 +51,32 @@ export default class App extends Component {
   render() {
     return (
 
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <View>
-          <Text>
-            Enter Allergy:
-          </Text>
-        <TextInput
-      style={{ height: 40, borderColor: 'gray', borderWidth: 1, width: 200, }}
-      placeholder="Enter Your Allergy"
-    />
-    </View>
+      <View>
+
+        {/* If User is Logged in and registered render Home View */}
+
+{this.state.isRegistered === true && this.state.isLoggedIn ===true ?
+
+<Home setParentState={newState=>this.setState(newState)} user={this.state.username} /> 
+
+// If user Unregistered or Logged in Render Registration or Login View
+    :
     <View>
-         <DatePickerIOS
-          date={this.state.chosenDate}
-          onDateChange={this.setDate}
-          style={{width: 300}}
-        />
-            <Button
-          title="Press me"
-          onPress={() => console.log(this.state)}
-        />
-    </View>
-    <View>
-    <Text>
-            Food Consumed:
-          </Text>
-        <TextInput
-      style={{ height: 40, borderColor: 'gray', borderWidth: 1, width: 200, }}
-      placeholder="What did you eat?"
-    />
-        <Text>
-            Enter Time/Date:
-          </Text>
-        <TextInput
-      style={{ height: 40, borderColor: 'gray', borderWidth: 1, width: 200, }}
-      placeholder="Time?"
-    />
-            <Button
-          title="Get Yo Results!"
-          onPress={() => {
-            this.setModalVisible(true);
-          }}
-        />
-        {this.state.isLoggedIn === false && (
+
+        {this.state.isLoggedIn === false && this.state.isRegistered === true ? (
           <View>
           <Login setParentState={newState=>this.setState(newState)} />
-          <Registration setParentState={newState=>this.setState(newState)} />
           </View>
-          )}
+          ) : 
+          <View>
+            <Registration setParentState={newState=>this.setState(newState)} />
+          </View>
+          
+          }
    
     </View>
+
+        }
     <Modal
           animationType="slide"
           transparent={false}
@@ -127,11 +105,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center'
-  },
-  horizontal: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    padding: 30
   },
   btnType: {
     paddingTop: 100,

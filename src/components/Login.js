@@ -5,7 +5,8 @@ import {
     TextInput,
     View,
     Button,
-    ActivityIndicator
+    ActivityIndicator,
+    StyleSheet,
 } from 'react-native';
 
 export default class Login extends Component {
@@ -58,15 +59,19 @@ export default class Login extends Component {
           });
     }
 
+    openReg = () => {
+        this.props.setParentState({isRegistered: false})
+    }
+
     render() {
         return (
-            <ScrollView style={{padding: 20}}>
+            <ScrollView>
                 <Text 
-                    style={{fontSize: 27}}>
+                    style={styles.heading}>
                     Login
                 </Text>
-                <TextInput placeholder='Username' autoCapitalize = 'none' onChangeText={text => this.setState({username: text})} />
-                <TextInput placeholder='Password' autoCapitalize = 'none' onChangeText={text => this.setState({password: text})}/>
+                <TextInput style={styles.Inputs}  placeholder='Username' autoCapitalize = 'none' onChangeText={text => this.setState({username: text})} />
+                <TextInput style={styles.Inputs}  secureTextEntry={true} placeholder='Password' autoCapitalize = 'none' onChangeText={text => this.setState({password: text})}/>
                 <View style={{margin:7}} />
                 {this.state.isLoggingIn && <ActivityIndicator />}
                 {!!this.state.message && (
@@ -80,7 +85,31 @@ export default class Login extends Component {
                     onPress={this._userLogin}
                     title="Submit"
                       />
+                    
+                    <Button 
+                    color="#f194ff"
+                    onPress={this.openReg}
+                    title="Create User"
+                      />
                   </ScrollView>
             )
     }
 }
+
+const styles = StyleSheet.create({
+    heading: {
+        fontSize: 40,
+        marginTop: 100,
+        color: '#14C619',
+        textAlign: 'center',
+    },
+
+    Inputs: {
+        height: 40, 
+        borderColor: 'gray', 
+        borderWidth: 1,
+        width: '80%',
+        marginLeft: '10%',
+        marginTop: 10,
+    }
+})

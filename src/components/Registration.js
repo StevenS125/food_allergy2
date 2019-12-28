@@ -5,7 +5,8 @@ import {
     TextInput,
     View,
     Button,
-    ActivityIndicator
+    ActivityIndicator,
+    StyleSheet,
 } from 'react-native';
 
 export default class Registration extends Component {
@@ -59,16 +60,20 @@ export default class Registration extends Component {
           });
     }
 
+    registerTrue = () => {
+        this.props.setParentState({isRegistered: true})
+    }
+
     render() {
         return (
-            <ScrollView style={{padding: 20}}>
+            <ScrollView>
                 <Text 
-                    style={{fontSize: 27}}>
+                    style={styles.heading}>
                     Register
                 </Text>
-                <TextInput placeholder='Username' autoCapitalize = 'none' onChangeText={text => this.setState({username: text})} />
-                <TextInput placeholder='email' autoCapitalize = 'none' onChangeText={text => this.setState({email: text})}/>
-                <TextInput placeholder='Password' autoCapitalize = 'none' onChangeText={text => this.setState({password: text})}/>
+                <TextInput style={styles.Inputs} placeholder='Username' autoCapitalize = 'none' onChangeText={text => this.setState({username: text})} />
+                <TextInput style={styles.Inputs}  placeholder='email' autoCapitalize = 'none' onChangeText={text => this.setState({email: text})}/>
+                <TextInput style={styles.Inputs}  secureTextEntry={true} placeholder='Password' autoCapitalize = 'none' onChangeText={text => this.setState({password: text})}/>
                 <View style={{margin:7}} />
                 {this.state.isLoggingIn && <ActivityIndicator />}
                 {!!this.state.message && (
@@ -82,7 +87,30 @@ export default class Registration extends Component {
                     onPress={this._userRegister}
                     title="Submit"
                       />
+                <Button 
+                          color="#f194ff"
+                title="Already Registered?"
+                onPress={this.registerTrue}
+                />
                   </ScrollView>
             )
     }
 }
+
+const styles = StyleSheet.create({
+    heading: {
+        fontSize: 40,
+        marginTop: 100,
+        color: '#14C619',
+        textAlign: 'center',
+    },
+
+    Inputs: {
+        height: 40, 
+        borderColor: 'gray', 
+        borderWidth: 1,
+        width: '80%',
+        marginLeft: '10%',
+        marginTop: 10,
+    }
+})
