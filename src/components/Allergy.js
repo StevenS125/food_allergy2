@@ -14,15 +14,25 @@ import Item from './Item'
 
 export default class Allergy extends Component {
     state={
-        foods: [{'brand': 'null'}],
+        foods: [],
+        searchFood: 'cookies',
     }
 
-    doitS = () => {
+   doitS = () => {
+      const newFood = fetch('https://allergy-api.herokuapp.com/food?search=' + this.state.searchFood   )
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(this.props.userName)
         this.setState({
-            foods: this.props.foods
+          foods: responseJson.results
         })
-    }
 
+   
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    }
 
 
 
@@ -31,7 +41,8 @@ export default class Allergy extends Component {
       
 
   render() {
-      const thefoods = this.state.foods.results
+      const thefoods = this.state.foods
+      const name = this.props.userName
 
     return (
       <View>
@@ -39,10 +50,17 @@ export default class Allergy extends Component {
           title="Find Foods"
           color='red'
           onPress={this.doitS}
+          
           />
+          <TextInput 
+          style={styles.Inputs}
+          placeholder='Type of Food' autoCapitalize = 'none' onChangeText={text => this.setState({searchFood: text})} 
+          /> 
+          
+        
       <FlatList
         data={thefoods}
-        renderItem={({ item }) => <Item title={item} />}
+        renderItem={({ item }) => <Item userName={name} title={item} />}
         keyExtractor={item => item.id}
       />
 
@@ -50,3 +68,14 @@ export default class Allergy extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  Inputs: {
+    height: 40, 
+    borderColor: 'gray', 
+    borderWidth: 1,
+    width: '80%',
+    marginLeft: '10%',
+    marginTop: 10,
+}
+})

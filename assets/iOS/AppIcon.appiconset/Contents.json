@@ -1,22 +1,28 @@
 {
   "images" : [
-    {
+	{
       "size" : "20x20",
-      "idiom" : "iphone",
-      "filename" : "Allergy Fix  Logo-20@2x.png",
-      "scale" : "2x"
+      "idiom": "iphone",
+	  "filename" : "Allergy Fix  Logo-20@2x.png",
+      "scale": "2x"
+    },
+	{
+      "size" : "20x20",
+      "idiom": "iphone",
+	  "filename" : "Allergy Fix  Logo-20@3x.png",
+      "scale": "3x"
+    },
+	{
+      "size" : "20x20",
+      "idiom": "ipad",
+	  "filename" : "Allergy Fix  Logo-20.png",
+      "scale": "1x"
     },
     {
       "size" : "20x20",
-      "idiom" : "iphone",
-      "filename" : "Allergy Fix  Logo-20@3x.png",
-      "scale" : "3x"
-    },
-    {
-      "size" : "29x29",
-      "idiom" : "iphone",
-      "filename" : "Allergy Fix  Logo-30.png",
-      "scale" : "1x"
+      "idiom": "ipad",
+	  "filename" : "Allergy Fix  Logo-20@2x.png",
+      "scale": "2x"
     },
     {
       "size" : "29x29",
@@ -55,18 +61,6 @@
       "scale" : "3x"
     },
     {
-      "size" : "20x20",
-      "idiom" : "ipad",
-      "filename" : "Allergy Fix  Logo-20.png",
-      "scale" : "1x"
-    },
-    {
-      "size" : "20x20",
-      "idiom" : "ipad",
-      "filename" : "Allergy Fix  Logo-20@2x-1.png",
-      "scale" : "2x"
-    },
-    {
       "size" : "29x29",
       "idiom" : "ipad",
       "filename" : "Allergy Fix  Logo-29.png",
@@ -75,7 +69,7 @@
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "Allergy Fix  Logo-29@2x-1.png",
+      "filename" : "Allergy Fix  Logo-29@2x.png",
       "scale" : "2x"
     },
     {
@@ -87,7 +81,7 @@
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "Allergy Fix  Logo-40@2x-1.png",
+      "filename" : "Allergy Fix  Logo-40@2x.png",
       "scale" : "2x"
     },
     {

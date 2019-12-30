@@ -45,7 +45,7 @@ export default class Home extends Component {
       <ScrollView> 
         <Text style={styles.Heading} >Welcome {user} </Text> 
 
-<Allergy foods={this.state.newFood} />
+<Allergy userName={user} foods={this.state.newFood} />
 
 <View style={styles.logOutBtn}> 
 <Button

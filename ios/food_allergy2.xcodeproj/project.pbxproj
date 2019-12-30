@@ -194,7 +194,6 @@
 				210EC887DA01134B9A0890DE /* Pods-food_allergy2Tests.debug.xcconfig */,
 				32B671E8E6541CC98EC3D5D7 /* Pods-food_allergy2Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -308,6 +307,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
