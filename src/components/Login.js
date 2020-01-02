@@ -65,13 +65,13 @@ export default class Login extends Component {
 
     render() {
         return (
-            <ScrollView>
+            <View>
                 <Text 
                     style={styles.heading}>
                     Login
                 </Text>
-                <TextInput style={styles.Inputs}  placeholder='Username' autoCapitalize = 'none' onChangeText={text => this.setState({username: text})} />
-                <TextInput style={styles.Inputs}  secureTextEntry={true} placeholder='Password' autoCapitalize = 'none' onChangeText={text => this.setState({password: text})}/>
+                <TextInput style={styles.Inputs}  placeholder=' Username' autoCapitalize = 'none' onChangeText={text => this.setState({username: text})} />
+                <TextInput style={styles.Inputs}  secureTextEntry={true} placeholder=' Password' autoCapitalize = 'none' onChangeText={text => this.setState({password: text})}/>
                 <View style={{margin:7}} />
                 {this.state.isLoggingIn && <ActivityIndicator />}
                 {!!this.state.message && (
@@ -91,7 +91,7 @@ export default class Login extends Component {
                     onPress={this.openReg}
                     title="Create User"
                       />
-                  </ScrollView>
+                  </View>
             )
     }
 }
@@ -111,5 +111,6 @@ const styles = StyleSheet.create({
         width: '80%',
         marginLeft: '10%',
         marginTop: 10,
-    }
+    },
+
 })

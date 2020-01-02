@@ -62,6 +62,7 @@ export default class Item extends Component {
 }).then((response) => response.json())
 .then((responseJson) => {
   console.log(responseJson);
+  this.togglePicker()
   }
 )
 .catch((error) => {

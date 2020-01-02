@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TextInput, SafeAreaView, StyleSheet, Button, Alert, DatePickerIOS, Modal, TouchableHighlight} from 'react-native';
+import { Text, View, ScrollView, StyleSheet} from 'react-native';
 
 import Login from './src/components/Login';
 import Registration from './src/components/Registration';
@@ -51,7 +51,7 @@ export default class App extends Component {
   render() {
     return (
 
-      <View>
+      <ScrollView>
 
         {/* If User is Logged in and registered render Home View */}
 
@@ -77,26 +77,8 @@ export default class App extends Component {
     </View>
 
         }
-    <Modal
-          animationType="slide"
-          transparent={false}
-          visible={this.state.modalVisible}
-          onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-          }}>
-          <View style={{marginTop: 100}}>
-            <View>
-              <TouchableHighlight>
-                              <Button
-                              onPress={() => {
-                              this.setModalVisible(false);
-                            }}title="Close Results!"/>
-              </TouchableHighlight>
-            </View>
-          </View>
-        </Modal>
 
-</View>
+</ScrollView>
     );
   }
 }

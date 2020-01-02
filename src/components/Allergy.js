@@ -6,6 +6,7 @@ import {
     View,
     Button,
     StyleSheet,
+    DatePickerIOS, 
     FlatList,
 } from 'react-native';
 
@@ -16,23 +17,39 @@ export default class Allergy extends Component {
     state={
         foods: [],
         searchFood: 'cookies',
+        name: this.props.userName,
+        chosenDate: new Date(),
     }
 
-   doitS = () => {
-      const newFood = fetch('https://allergy-api.herokuapp.com/food?search=' + this.state.searchFood   )
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(this.props.userName)
-        this.setState({
-          foods: responseJson.results
-        })
-
-   
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    addAllergy = () => {
+        fetch('https://allergy-api.herokuapp.com/reaction-entry/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        'person': {
+          'username': this.state.name
+        },
+        'description': this.state.searchFood,
+        'log_date': this.state.chosenDate,
+      }),
+    }).then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson);
+      }
+    )
+    .catch((error) => {
+      console.error(error);
+    });
+    
     }
+
+    setDate = (newDate) => {
+        this.setState({chosenDate: newDate});
+        console.log(this.state.name)
+      }
 
 
 
@@ -46,23 +63,20 @@ export default class Allergy extends Component {
 
     return (
       <View>
-          <Button 
-          title="Find Foods"
-          color='red'
-          onPress={this.doitS}
-          
-          />
           <TextInput 
           style={styles.Inputs}
-          placeholder='Type of Food' autoCapitalize = 'none' onChangeText={text => this.setState({searchFood: text})} 
-          /> 
+          placeholder='Type of Allergic Reaction' autoCapitalize = 'none' onChangeText={text => this.setState({searchFood: text})} 
+          />     
+                  <DatePickerIOS
+          date={this.state.chosenDate}
+          onDateChange={this.setDate}
+        /> 
+            <Button 
+          title="Submit Reaction"
+          color='red'
+          onPress={this.addAllergy}
           
-        
-      <FlatList
-        data={thefoods}
-        renderItem={({ item }) => <Item userName={name} title={item} />}
-        keyExtractor={item => item.id}
-      />
+          />
 
       </View>
     );

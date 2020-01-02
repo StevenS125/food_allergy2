@@ -71,9 +71,9 @@ export default class Registration extends Component {
                     style={styles.heading}>
                     Register
                 </Text>
-                <TextInput style={styles.Inputs} placeholder='Username' autoCapitalize = 'none' onChangeText={text => this.setState({username: text})} />
-                <TextInput style={styles.Inputs}  placeholder='email' autoCapitalize = 'none' onChangeText={text => this.setState({email: text})}/>
-                <TextInput style={styles.Inputs}  secureTextEntry={true} placeholder='Password' autoCapitalize = 'none' onChangeText={text => this.setState({password: text})}/>
+                <TextInput style={styles.Inputs} placeholder=' Username' autoCapitalize = 'none' onChangeText={text => this.setState({username: text})} />
+                <TextInput style={styles.Inputs}  placeholder=' Email' autoCapitalize = 'none' onChangeText={text => this.setState({email: text})}/>
+                <TextInput style={styles.Inputs}  secureTextEntry={true} placeholder=' Password' autoCapitalize = 'none' onChangeText={text => this.setState({password: text})}/>
                 <View style={{margin:7}} />
                 {this.state.isLoggingIn && <ActivityIndicator />}
                 {!!this.state.message && (
