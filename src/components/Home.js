@@ -16,6 +16,7 @@ export default class Home extends Component {
       user: 'null',
       showAllergy: false,
       showMeals: false,
+      hadReaction: false,
                 };
 
     this.setDate = this.setDate.bind(this);
@@ -34,6 +35,24 @@ export default class Home extends Component {
    .catch((error) => {
      console.error(error);
    });
+
+   const reactionExists = await fetch('https://allergy-api.herokuapp.com/reaction-entry/')
+   .then((response) => response.json())
+   .then((responseJson) => {
+     for (let index = 0; index < responseJson.results.length; index++) {
+       const gotem = responseJson.results[index].person.username;
+       console.log(gotem)
+       console.log(this.props.user)
+     if (gotem == this.props.user) {
+       this.setState({
+         hadReaction: true
+       })
+     }
+     }
+   })
+   .catch((error) => {
+     console.log(error)
+   })
   }
 
   setDate(newDate) {
@@ -56,11 +75,12 @@ export default class Home extends Component {
 
   render() {
     const user = this.props.user
+    const isReactionTrue = this.state.hadReaction
 
     return (
       <View> 
         <Text style={styles.Heading} >Welcome {user} </Text> 
-        <DaysCount userName= {user} />
+        <DaysCount hadReaction={isReactionTrue} userName= {user} />
 
       <View style={styles.actionContainer}>
 
